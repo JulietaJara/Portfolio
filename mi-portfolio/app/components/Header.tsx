@@ -6,7 +6,7 @@ export default function Header() {
       <header className="py-4 px-6 bg-lilac-100/95 backdrop-blur supports-[backdrop-filter]:bg-lilac-100/60 sticky top-0 z-40 w-full border-b border-lilac-200/40">
         <div className="container flex items-center justify-between">
           <Link href="/" className="text-2xl font-bold">
-            TuNombre
+            Julieta Jara
           </Link>
           <nav>
             <ul className="flex space-x-4">
