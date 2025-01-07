@@ -1,5 +1,5 @@
-import { Badge } from './ui/badge'
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
+import { Badge } from './ui/badge';
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import {
   SiJavascript,
   SiTypescript,
@@ -8,43 +8,108 @@ import {
   SiNodedotjs,
   SiMongodb,
   SiPostgresql,
-  SiGit
-} from 'react-icons/si'
+  SiGit,
+  SiHtml5,
+  SiCss3,
+  SiBootstrap,
+  SiSpring,
+  SiMysql,
+  SiNeo4J,
+  SiDocker,
+  SiCircleci,
+  SiSonarcloud,
+  SiSwagger,
+  SiGradle,
+  SiJunit5,
+  SiGitlab, 
+} from 'react-icons/si';
+import { FaJava, FaPython } from 'react-icons/fa'; 
 
-const skills = [
-  { name: "JavaScript", icon: SiJavascript, color: "text-yellow-400" },
-  { name: "TypeScript", icon: SiTypescript, color: "text-blue-600" },
+interface Skill {
+  name: string;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  color: string;
+}
+
+const frontendSkills: Skill[] = [
   { name: "React", icon: SiReact, color: "text-blue-400" },
+  { name: "JavaScript", icon: SiJavascript, color: "text-yellow-400" },
+  { name: "HTML", icon: SiHtml5, color: "text-orange-500" },
+  { name: "CSS", icon: SiCss3, color: "text-blue-500" },
+  { name: "Bootstrap", icon: SiBootstrap, color: "text-purple-600" },
+  { name: "TypeScript", icon: SiTypescript, color: "text-blue-600" },
   { name: "Next.js", icon: SiNextdotjs, color: "text-black dark:text-white" },
+];
+
+const backendSkills: Skill[] = [
+  { name: "Java", icon: FaJava, color: "text-red-600" },
+  { name: "Kotlin", icon: SiSpring, color: "text-purple-500" },
+  { name: "Python", icon: FaPython, color: "text-yellow-500" },
+  { name: "Spring Boot", icon: SiSpring, color: "text-green-700" },
   { name: "Node.js", icon: SiNodedotjs, color: "text-green-600" },
-  { name: "MongoDB", icon: SiMongodb, color: "text-green-500" },
+];
+
+const databaseSkills: Skill[] = [
+  { name: "MySQL", icon: SiMysql, color: "text-blue-600" },
   { name: "PostgreSQL", icon: SiPostgresql, color: "text-blue-400" },
+  { name: "MongoDB", icon: SiMongodb, color: "text-green-500" },
+  { name: "Neo4j", icon: SiNeo4J, color: "text-cyan-600" },
+];
+
+const versionControlSkills: Skill[] = [
   { name: "Git", icon: SiGit, color: "text-orange-600" },
-]
+  { name: "GitLab", icon: SiGitlab, color: "text-orange-700" },
+];
+
+const devOpsSkills: Skill[] = [
+  { name: "Docker", icon: SiDocker, color: "text-blue-500" },
+  { name: "CI/CD", icon: SiCircleci, color: "text-green-500" },
+  { name: "SonarCloud", icon: SiSonarcloud, color: "text-blue-600" },
+  { name: "Swagger", icon: SiSwagger, color: "text-yellow-600" },
+  { name: "JUnit", icon: SiJunit5, color: "text-purple-600" },
+  { name: "Gradle", icon: SiGradle, color: "text-orange-600" },
+];
+
+interface SkillSectionProps {
+  title: string;
+  skills: Skill[];
+}
+
+function SkillSection({ title, skills }: SkillSectionProps) {
+  return (
+    <div className="mb-10">
+      <h3 className="text-2xl font-semibold mb-6 text-lilac-700">{title}</h3>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        {skills.map((skill, index) => (
+          <Card key={index} className="overflow-hidden border border-lilac-300 bg-white hover:shadow-md transition-shadow">
+            <CardHeader className="flex flex-col items-center justify-center">
+              <CardTitle className="mb-4">{skill.name}</CardTitle>
+              <div className={`w-20 h-20 ${skill.color} mb-4 flex items-center justify-center`}>
+                <skill.icon className="w-full h-full" />
+              </div>
+            </CardHeader>
+            <CardContent className="text-center">
+              <Badge variant="secondary" className="text-sm bg-lilac-100 text-lilac-700">
+                {skill.name}
+              </Badge>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function Skills() {
   return (
     <section id="skills" className="py-20 bg-gradient-to-b from-lilac-200 to-lilac-100">
       <div className="container">
         <h2 className="text-3xl font-bold mb-10 text-center text-lilac-800">My Skills</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-          {skills.map((skill, index) => (
-            <Card key={index} className="overflow-hidden border border-lilac-300 bg-white hover:shadow-md transition-shadow">
-              <CardHeader className="flex flex-col items-center justify-center">
-                <CardTitle className="mb-4">{skill.name}</CardTitle>
-                {/* Cambia el tamaño de los iconos aquí */}
-                <div className={`w-20 h-20 ${skill.color} mb-4 flex items-center justify-center`}>
-                  <skill.icon className="w-full h-full" />
-                </div>
-              </CardHeader>
-              <CardContent className="text-center">
-                <Badge variant="secondary" className="text-sm bg-lilac-100 text-lilac-700">
-                  {skill.name}
-                </Badge>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        <SkillSection title="Frontend" skills={frontendSkills} />
+        <SkillSection title="Backend" skills={backendSkills} />
+        <SkillSection title="Databases" skills={databaseSkills} />
+        <SkillSection title="DevOps" skills={devOpsSkills} />
+        <SkillSection title="Version Control" skills={versionControlSkills} /> 
       </div>
     </section>
   );
