@@ -11,7 +11,7 @@ export default function Hero() {
       <p className="text-xl mb-8 text-lilac-700">Desarrolladora Junior</p>
 
       <Link href="#contact" passHref>
-        <Button className="bg-lilac-600 hover:bg-lilac-700 text-white">
+        <Button className="bg-lilac-600 hover:bg-lilac-800 text-white">
           Contáctame
         </Button>
       </Link>

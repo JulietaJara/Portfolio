@@ -4,10 +4,10 @@ import Button from './ui/button';
 
 const projects = [
   {
-    title: "Proyecto 1",
-    description: "Una breve descripción del proyecto 1.",
-    technologies: ["React", "Node.js", "MongoDB"],
-    link: "#"
+    title: "¡Piedra, Papel, Tijera, Lagarto o Spock!",
+    description: "Juego interactivo donde compites contra la computadora eligiendo tu jugada.",
+    technologies: ["React", "Javascript", "Bootstrap", "CSS", "HTML"],
+    link: "https://github.com/JulietaJara/unq-ui-julieta-jara-trabajo-final"
   },
   {
     title: "Proyecto 2",
@@ -21,7 +21,7 @@ export default function Projects() {
   return (
     <section id="projects" className="py-20 bg-lilac-50">
       <div className="container">
-        <h2 className="text-3xl font-bold mb-10 text-center text-lilac-800">Mis Proyectos</h2>
+        <h2 className="text-3xl font-bold mb-10 text-center text-lilac-700">Mis Proyectos</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
             <Card key={index} className="border-lilac-200 hover:border-lilac-300 transition-colors">
@@ -37,9 +37,10 @@ export default function Projects() {
                 </div>
               </CardContent>
               <CardFooter>
-                <Button className="bg-lilac-600 hover:bg-lilac-700 text-white w-full" asChild>
+                <Button className="bg-lilac-600 hover:bg-lilac-800 text-white w-full rounded-[12px]" asChild>
                   <a href={project.link} target="_blank" rel="noopener noreferrer">Ver Proyecto</a>
                 </Button>
+
               </CardFooter>
             </Card>
           ))}
