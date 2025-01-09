@@ -104,7 +104,7 @@ export default function Skills() {
   return (
     <section id="skills" className="py-20 bg-gradient-to-b from-lilac-200 to-lilac-100">
       <div className="container">
-        <h2 className="text-3xl font-bold mb-10 text-center text-lilac-800">My Skills</h2>
+        <h2 className="text-3xl font-bold mb-10 text-center text-lilac-700">My Skills</h2>
         <SkillSection title="Frontend" skills={frontendSkills} />
         <SkillSection title="Backend" skills={backendSkills} />
         <SkillSection title="Databases" skills={databaseSkills} />
