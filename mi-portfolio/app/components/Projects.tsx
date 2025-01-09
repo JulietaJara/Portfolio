@@ -10,10 +10,10 @@ const projects = [
     link: "https://github.com/JulietaJara/unq-ui-julieta-jara-trabajo-final"
   },
   {
-    title: "Proyecto 2",
-    description: "Una breve descripción del proyecto 2.",
-    technologies: ["Vue.js", "Express", "PostgreSQL"],
-    link: "#"
+    title: "Ciencia participativa y juegos",
+    description: "Trabajo integrador para la materia Programación con Objetos 2, en el cual apliqué principios avanzados de diseño y desarrollo de software orientado a objetos.",
+    technologies: ["Java", "Mock", "Mockito", "JUnit"],
+    link: "https://github.com/JulietaJara/unqui-po2-jara"
   },
 ]
 
