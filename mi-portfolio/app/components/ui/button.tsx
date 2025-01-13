@@ -5,6 +5,7 @@ interface ButtonProps {
     className?: string;
     asChild?: boolean;
     variant?: 'primary' | 'secondary' | 'ghost';  
+    onClick?: () => void;
 }
 
 export default function Button({ children, className, asChild, variant = 'primary' }: ButtonProps) {
