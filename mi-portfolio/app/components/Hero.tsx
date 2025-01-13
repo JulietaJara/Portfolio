@@ -19,7 +19,7 @@ export default function Hero() {
         </Button>
       </Link>
 
-      <Link href="#Contact" passHref>
+      <Link href="#contact" passHref>
         <Button className="bg-lilac-600 hover:bg-lilac-800 text-white">
           Contáctame
           <span role="img" aria-label="emoji" className="ml-2">📩</span>
