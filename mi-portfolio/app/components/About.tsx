@@ -9,9 +9,10 @@ export default function About() {
         <div className="max-w-2xl mx-auto text-center text-lilac-700">
           <p className="mb-4">
           <span role="img" aria-label="emoji" className="ml-2">💜</span> 
-            Soy desarrolladora fullstack junior con experiencia en Backend y Frontend, enfocada en crear
-            soluciones eficientes y escalables tanto en la gestión de sistemas como en el diseño de interfaces
-            atractivas y funcionales.
+          Soy desarrolladora fullstack junior con experiencia en Backend y Frontend, 
+          enfocada en seguir aprendiendo y especializándome en ambos ámbitos, creando soluciones eficientes 
+          y escalables tanto en la gestión de sistemas como en el diseño de interfaces 
+          atractivas y funcionales.
             <span role="img" aria-label="emoji" className="ml-2">💜</span>
           </p>
           <p className="mb-4">
