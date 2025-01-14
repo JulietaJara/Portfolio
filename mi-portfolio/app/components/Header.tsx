@@ -11,7 +11,7 @@ export default function Header() {
           <nav>
             <ul className="flex space-x-4">
               <li><Button variant="ghost" className="text-lilac-700 hover:text-lilac-900 hover:bg-lilac-200" asChild><Link href="#projects">Proyectos</Link></Button></li>
-              <li><Button variant="ghost" className="text-lilac-700 hover:text-lilac-900 hover:bg-lilac-200" asChild><Link href="#skills">Habilidades</Link></Button></li>
+              <li><Button variant="ghost" className="text-lilac-700 hover:text-lilac-900 hover:bg-lilac-200" asChild><Link href="#skills">Skills</Link></Button></li>
               <li><Button variant="ghost" className="text-lilac-700 hover:text-lilac-900 hover:bg-lilac-200" asChild><Link href="#about">Sobre mí</Link></Button></li>
               <li><Button variant="ghost" className="text-lilac-700 hover:text-lilac-900 hover:bg-lilac-200" asChild><Link href="#contact">Contacto</Link></Button></li>
             </ul>
