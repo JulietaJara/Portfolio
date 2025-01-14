@@ -102,14 +102,16 @@ function SkillSection({ title, skills }: SkillSectionProps) {
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-20 bg-gradient-to-b from-lilac-200 to-lilac-100">
+    <section id="skills" className="py-20 bg-gradient-to-b from-lilac-100 to-lilac-20">
       <div className="container">
-        <h2 className="text-3xl font-bold mb-10 text-center text-lilac-700">My Skills</h2>
-        <SkillSection title="Frontend" skills={frontendSkills} />
-        <SkillSection title="Backend" skills={backendSkills} />
-        <SkillSection title="Databases" skills={databaseSkills} />
-        <SkillSection title="DevOps" skills={devOpsSkills} />
-        <SkillSection title="Version Control" skills={versionControlSkills} /> 
+        <h2 className="text-3xl font-bold mb-10 text-center text-lilac-700">My Skills
+        <span role="img" aria-label="emoji" className="ml-2">🛠️</span>
+        </h2>
+        <SkillSection title="Frontend 🎨" skills={frontendSkills} />
+        <SkillSection title="Backend 💻" skills={backendSkills} />
+        <SkillSection title="Databases 🗄️" skills={databaseSkills} />
+        <SkillSection title="DevOps ⚙️" skills={devOpsSkills} />
+        <SkillSection title="Version Control 🗂️" skills={versionControlSkills} /> 
       </div>
     </section>
   );
