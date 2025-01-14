@@ -90,7 +90,7 @@ function SkillSection({ title, skills }: SkillSectionProps) {
                 {skill.name}
               </CardTitle>
               <div
-                className={`w-16 h-16 sm:w-20 sm:h-20 ${skill.color} mb-4 flex items-center justify-center`}
+                className={`w-14 h-14 sm:w-18 sm:h-18 ${skill.color} mb-4 flex items-center justify-center`}
               >
                 <skill.icon className="w-full h-full" />
               </div>
