@@ -1,9 +1,11 @@
 import { ReactNode } from 'react';
+import Link from 'next/link';
 
 interface ButtonProps {
   children: ReactNode;
   className?: string;
-  asChild?: boolean;
+  asChild?: boolean; 
+  href?: string; 
   variant?: 'primary' | 'secondary' | 'ghost';
   onClick?: () => void;
 }
@@ -12,11 +14,10 @@ export default function Button({
   children,
   className,
   asChild,
+  href,
   variant = 'primary',
   onClick,
 }: ButtonProps) {
-  const Component = asChild ? 'a' : 'button';
-
   const variantClass =
     variant === 'primary'
       ? 'bg-lilac-600 hover:bg-lilac-700 text-white'
@@ -24,12 +25,22 @@ export default function Button({
       ? 'bg-lilac-100 text-lilac-700'
       : 'bg-transparent text-lilac-700 border border-lilac-700';
 
+  if (asChild && href) {
+    return (
+      <Link href={href} passHref>
+        <a className={`px-4 py-2 rounded-full font-semibold ${variantClass} ${className}`}>
+          {children}
+        </a>
+      </Link>
+    );
+  }
+
   return (
-    <Component
-      onClick={onClick}  
+    <button
+      onClick={onClick}
       className={`px-4 py-2 rounded-full font-semibold ${variantClass} ${className}`}
     >
-      {children}  
-    </Component>
+      {children}
+    </button>
   );
 }
