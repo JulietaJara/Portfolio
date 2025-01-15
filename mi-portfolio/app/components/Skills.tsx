@@ -78,18 +78,28 @@ interface SkillSectionProps {
 function SkillSection({ title, skills }: SkillSectionProps) {
   return (
     <div className="mb-10">
-      <h3 className="text-2xl font-semibold mb-6 text-lilac-700">{title}</h3>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+      <h3 className="text-xl sm:text-2xl font-semibold mb-6 text-lilac-700">{title}</h3>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
         {skills.map((skill, index) => (
-          <Card key={index} className="overflow-hidden border border-lilac-300 bg-white hover:shadow-md transition-shadow">
+          <Card
+            key={index}
+            className="overflow-hidden border border-lilac-300 bg-white hover:shadow-md transition-shadow"
+          >
             <CardHeader className="flex flex-col items-center justify-center">
-              <CardTitle className="mb-4">{skill.name}</CardTitle>
-              <div className={`w-20 h-20 ${skill.color} mb-4 flex items-center justify-center`}>
+              <CardTitle className="mb-2 text-sm sm:text-base md:text-lg">
+                {skill.name}
+              </CardTitle>
+              <div
+                className={`w-14 h-14 sm:w-18 sm:h-18 ${skill.color} mb-4 flex items-center justify-center`}
+              >
                 <skill.icon className="w-full h-full" />
               </div>
             </CardHeader>
             <CardContent className="text-center">
-              <Badge variant="secondary" className="text-sm bg-lilac-100 text-lilac-700">
+              <Badge
+                variant="secondary"
+                className="text-xs sm:text-sm bg-lilac-100 text-lilac-700"
+              >
                 {skill.name}
               </Badge>
             </CardContent>
@@ -102,14 +112,22 @@ function SkillSection({ title, skills }: SkillSectionProps) {
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-20 bg-gradient-to-b from-lilac-200 to-lilac-100">
-      <div className="container">
-        <h2 className="text-3xl font-bold mb-10 text-center text-lilac-800">My Skills</h2>
-        <SkillSection title="Frontend" skills={frontendSkills} />
-        <SkillSection title="Backend" skills={backendSkills} />
-        <SkillSection title="Databases" skills={databaseSkills} />
-        <SkillSection title="DevOps" skills={devOpsSkills} />
-        <SkillSection title="Version Control" skills={versionControlSkills} /> 
+    <section
+      id="skills"
+      className="py-10 sm:py-20 bg-gradient-to-b from-lilac-100 to-lilac-20"
+    >
+      <div className="container mx-auto px-4">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-10 text-center text-lilac-700">
+          My Skills
+          <span role="img" aria-label="emoji" className="ml-2">
+            🛠️
+          </span>
+        </h2>
+        <SkillSection title="Frontend 🎨" skills={frontendSkills} />
+        <SkillSection title="Backend 💻" skills={backendSkills} />
+        <SkillSection title="Databases 🗄️" skills={databaseSkills} />
+        <SkillSection title="DevOps ⚙️" skills={devOpsSkills} />
+        <SkillSection title="Version Control 🗂️" skills={versionControlSkills} />
       </div>
     </section>
   );
