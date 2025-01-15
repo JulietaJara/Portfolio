@@ -4,8 +4,8 @@ import Link from 'next/link';
 interface ButtonProps {
   children: ReactNode;
   className?: string;
-  asChild?: boolean; // Si es un enlace
-  href?: string; // Para enlaces
+  asChild?: boolean; 
+  href?: string; 
   variant?: 'primary' | 'secondary' | 'ghost';
   onClick?: () => void;
 }
@@ -26,7 +26,6 @@ export default function Button({
       : 'bg-transparent text-lilac-700 border border-lilac-700';
 
   if (asChild && href) {
-    // Renderiza un enlace
     return (
       <Link href={href} passHref>
         <a className={`px-4 py-2 rounded-full font-semibold ${variantClass} ${className}`}>
@@ -36,7 +35,6 @@ export default function Button({
     );
   }
 
-  // Renderiza un botón
   return (
     <button
       onClick={onClick}
