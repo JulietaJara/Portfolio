@@ -45,12 +45,6 @@ export function CardContent({ children, className }: CardContentProps) {
   return <div className={`p-4 ${className}`}>{children}</div>;
 }
 
-interface BadgeProps {
-  children: ReactNode;
-  variant?: 'primary' | 'secondary';
-  className?: string;
-}
-
 interface CardFooterProps {
   children: ReactNode;
   className?: string;
