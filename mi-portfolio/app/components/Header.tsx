@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Button from "./ui/button";
+import Image from 'next/image';
 import menu from "./images/menu.png";
 import close from "./images/menu.png";
 
@@ -21,11 +22,12 @@ export default function Header() {
           className="lg:hidden text-lilac-700 hover:text-lilac-900 transition-colors"
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          <img
-            src={menuOpen ? close.src : menu.src}
-            alt="Menu icon"
-            className="w-6 h-6"
-          />
+           <Image
+    src={menuOpen ? close.src : menu.src}
+    alt="Menu icon"
+    width={24} 
+    height={24} 
+  />
         </button>
 
         <nav
