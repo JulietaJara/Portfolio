@@ -4,10 +4,16 @@ import Button from './ui/button';
 
 const projects = [
   {
+    title: "Tauro's 🍭",
+    description: "🎉 Página web para salón de eventos Tauro's donde el objetivo principal  del proyecto era crear una plataforma para que los clientes puedan obtener información sobre los eventos y servicios ofrecidos por el salón. 🥳🎈",
+    technologies: ["TypeScript", "Javascript", "CSS"],
+    link: "https://tauro-s.vercel.app/"
+  },
+  {
     title: "🪨¡Piedra, Papel, Tijera, Lagarto o Spock! ✂️",
     description: "🎮 Juego interactivo donde compites contra la computadora eligiendo tu jugada.🧠💥",
     technologies: ["React", "Javascript", "Bootstrap", "CSS", "HTML"],
-    link: "https://github.com/JulietaJara/unq-ui-julieta-jara-trabajo-final"
+    link: "https://unq-ui-julieta-jara-trabajo-final.vercel.app"
   },
   {
     title: "🔬 Ciencia participativa y juegos  🎮 ",
