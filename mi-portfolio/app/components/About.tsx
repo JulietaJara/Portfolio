@@ -1,7 +1,7 @@
 export default function About() {
   return (
     <section id="about" className="py-20 bg-gradient-to-b from-lilac-100 to-white">
-      <div className="container">
+      <div className="container px-4">
         <h2 className="text-3xl font-bold mb-10 text-center text-lilac-700"> Sobre Mí
            <span role="img" aria-label="emoji" className="ml-2">😊</span>
            </h2>
