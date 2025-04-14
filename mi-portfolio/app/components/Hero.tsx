@@ -12,7 +12,7 @@ export default function Hero() {
 
       <p className="text-xl mb-8 text-lilac-700">Desarrolladora Junior</p>
 
-      <Link href="https://drive.google.com/file/d/1WApFrVq0NjJh4AvYhnQen7u49yYFyQvm/view?usp=sharing" passHref>
+      <Link href="https://drive.google.com/file/d/15RQK33sZMizihJKm_LcasQJR9XthDLBU/view?usp=sharing" passHref>
         <Button className="bg-lilac-600 hover:bg-lilac-800 text-white mr-2">
           Mi CV
           <span role="img" aria-label="emoji" className="ml-2">🙂</span>

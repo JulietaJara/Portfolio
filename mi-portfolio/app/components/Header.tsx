@@ -17,7 +17,6 @@ export default function Header() {
           Julieta Jara
         </Link>
 
-        {/* Botón de menú para móviles */}
         <button
           className="lg:hidden text-lilac-700 hover:text-lilac-900 transition-colors"
           onClick={() => setMenuOpen(!menuOpen)}
