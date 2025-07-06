@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Desktop } from "@/components/desktop";
-import { Taskbar } from "@/components/taskbar";
-import { WindowManager } from "@/components/window-manager";
+import { Desktop } from "../components/desktop";
+import { Taskbar } from "../components/taskbar";
+import { WindowManager } from "../components/window-manager";
 
 export default function Portfolio() {
   const [openWindows, setOpenWindows] = useState([]);
