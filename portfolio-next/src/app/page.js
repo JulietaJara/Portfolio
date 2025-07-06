@@ -65,6 +65,22 @@ const fileStructure = [
   },
 ];
 
+const skills = {
+  frontend: ["React", "TypeScript", "JavaScript", "HTML", "CSS", "Bootstrap", "Next.js"],
+  backend: ["Node.js", "Express", "Python", "Java", "Kotlin", "Spring Boot"],
+  database: ["PostgreSQL", "MongoDB", "MySQL", "Neo4j"],
+  devOps: ["Docker", "CI/CD", "SonarCloud", "Swagger", "JUnit", "Gradle"],
+  versionControl: ["Git", "GitLab"]
+};
+
+const SkillTag = ({ label }) => (
+  <span className="bg-blue-900 text-blue-100 px-3 py-1 rounded-full text-sm mr-2 mb-2 inline-block">
+    {label}
+  </span>
+);
+
+
+
 export default function VSCodePortfolio() {
   const [activeTab, setActiveTab] = useState("about");
   const [openTabs, setOpenTabs] = useState(["about"]);
@@ -162,10 +178,63 @@ export default function VSCodePortfolio() {
         );
 
       case "skills":
-        return (
-          <div className="p-6">
+  return (
+    <div className="p-6 space-y-6 font-mono text-sm">
+      {/* Simulación visual del archivo skills.ts con números de línea */}
+      <div className="flex">
+        {/* Números de línea */}
+        <div className="text-gray-500 text-right pr-4 select-none">
+          {[1, 2, 3, 4, 5, 6].map((n) => (
+            <div key={n}>{n}</div>
+          ))}
+        </div>
+
+        {/* Código simulado */}
+        <div className="text-white space-y-0.5">
+          <div>
+            <span className="text-purple-400">interface</span>{" "}
+            <span className="text-yellow-400">Skills</span> {"{"}
           </div>
-        );
+          <div>
+            {"  "}
+            <span className="text-blue-400">frontend</span>:{" "}
+            <span className="text-green-400">string[]</span>;
+          </div>
+          <div>
+            {"  "}
+            <span className="text-blue-400">backend</span>:{" "}
+            <span className="text-green-400">string[]</span>;
+          </div>
+          <div>
+            {"  "}
+            <span className="text-blue-400">database</span>:{" "}
+            <span className="text-green-400">string[]</span>;
+          </div>
+          <div>
+            {"  "}
+            <span className="text-blue-400">tools</span>:{" "}
+            <span className="text-green-400">string[]</span>;
+          </div>
+          <div>{"}"}</div>
+        </div>
+      </div>
+
+      {/* Abajo tus skills como etiquetas */}
+      {Object.entries(skills).map(([category, items]) => (
+        <div key={category}>
+          <h3 className="text-yellow-400 font-bold mb-2 capitalize">
+            {category}
+          </h3>
+          <div className="flex flex-wrap">
+            {items.map((skill) => (
+              <SkillTag key={skill} label={skill} />
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+
 
       case "contact":
         return (
