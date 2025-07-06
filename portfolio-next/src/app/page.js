@@ -142,9 +142,18 @@ export default function VSCodePortfolio() {
     switch (activeTab) {
       case "about":
         return (
-          <div className="p-6">
-          </div>
-        );
+    <div className="p-6 space-y-4 text-gray-300">
+      <h1 className="text-xl font-bold text-white">Hola, soy Julieta 👋</h1>
+      <p>
+        Soy desarrolladora fullstack junior con experiencia en frontend y backend, enfocada en seguir aprendiendo y creando soluciones eficientes, escalables y con buen diseño. </p>
+      <p>
+        Mis habilidades incluyen <strong>JavaScript</strong>, <strong>React</strong>, <strong>Node.js</strong>, <strong>Java</strong>, <strong>Kotlin</strong>  y más que he desarrollado a lo largo de mi formación y experiencia como desarrolladora fullstack junior.
+      </p>
+      <p>
+        Este portfolio está diseñado como una réplica de Visual Studio Code, combinando diseño y código para mostrar quién soy de una forma diferente.
+      </p>
+    </div>
+  );
 
       case "projects":
         return (
