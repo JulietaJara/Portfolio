@@ -193,7 +193,7 @@ export default function VSCodePortfolio() {
                   name: "AutoPick 👛",
                   tech: ["JavaScript", "HTML ", "CSS", "MySQL", "Express.js"],
                   description: "Sistema de compras y administración, con funcionalidades completas y conexión a una base de datos MySQL.",
-                  link: "https://tauro-s.vercel.app/"
+                  link: "https://lnkd.in/d-4NYbW2"
                 },
                 {
                   name: "Tauro's 🍭",
@@ -433,6 +433,124 @@ export default function VSCodePortfolio() {
           </div>
         )
 
+        case "cv":
+        return (
+          <div className="p-6">
+            <div className="flex items-start gap-4 mb-6">
+              <span className="text-gray-500 text-sm font-mono select-none">1</span>
+              <div>
+                <span className="text-gray-500">// Curriculum Vitae - PDF Document</span>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4 mb-4">
+              <span className="text-gray-500 text-sm font-mono select-none">2</span>
+              <div>
+                <span className="text-purple-400">const</span> <span className="text-blue-300">curriculum</span>{" "}
+                <span className="text-white">=</span> <span className="text-yellow-300">{"{"}</span>
+              </div>
+            </div>
+
+            <div className="ml-8 space-y-4">
+              <div className="flex items-start gap-4">
+                <span className="text-gray-500 text-sm font-mono select-none">3</span>
+                <div>
+                  <span className="text-red-300">fileName</span>
+                  <span className="text-white">:</span> <span className="text-green-300">"JaraJulieta-CV.pdf"</span>
+                  <span className="text-white">,</span>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <span className="text-gray-500 text-sm font-mono select-none">4</span>
+                <div>
+                  <span className="text-red-300">size</span>
+                  <span className="text-white">:</span> <span className="text-green-300">"2.4 MB"</span>
+                  <span className="text-white">,</span>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <span className="text-gray-500 text-sm font-mono select-none">5</span>
+                <div>
+                  <span className="text-red-300">lastModified</span>
+                  <span className="text-white">:</span> <span className="text-green-300">"2025-04-14"</span>
+                  <span className="text-white">,</span>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <span className="text-gray-500 text-sm font-mono select-none">6</span>
+                <div>
+                  <span className="text-red-300">language</span>
+                  <span className="text-white">:</span> <span className="text-green-300">"es-ES"</span>
+                  <span className="text-white">,</span>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <span className="text-gray-500 text-sm font-mono select-none">7</span>
+                <div>
+                  <span className="text-red-300">downloadUrl</span>
+                  <span className="text-white">:</span>{" "}
+                  <span className="text-green-300">"https://drive.google.com/file/d/15RQK33sZMizihJKm_LcasQJR9XthDLBU/view?usp=sharing"</span>
+                  <span className="text-white">,</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4 mt-4">
+              <span className="text-gray-500 text-sm font-mono select-none">8</span>
+              <span className="text-yellow-300">{"}"}</span>
+            </div>
+            <div className="mt-8">
+              <Card className="bg-gray-800 border-gray-700 p-6">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 bg-red-500 rounded flex items-center justify-center">
+                    <File className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-white font-semibold">Curriculum Vitae</h3>
+                    <p className="text-gray-400 text-sm">Documento PDF - Actualizado recientemente</p>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4 text-sm">
+                    <div>
+                      <span className="text-gray-400">Formato:</span>
+                      <span className="text-white ml-2">PDF</span>
+                    </div>
+                    <div>
+                      <span className="text-gray-400">Páginas:</span>
+                      <span className="text-white ml-2">1</span>
+                    </div>
+                    <div>
+                      <span className="text-gray-400">Idioma:</span>
+                      <span className="text-white ml-2">Español</span>
+                    </div>
+                    <div>
+                      <span className="text-gray-400">Tamaño:</span>
+                      <span className="text-white ml-2">2.4 MB</span>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-3 pt-4">
+                    <Button
+                      className="bg-red-600 hover:bg-red-700 flex-1"
+                      onClick={() =>
+                        window.open("https://drive.google.com/file/d/15RQK33sZMizihJKm_LcasQJR9XthDLBU/view?usp=sharing", "_blank")
+                      }
+                    >
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      Ver CV Online
+                    </Button>
+                  </div>
+                </div>
+              </Card>
+            </div>
+          </div>
+        )
         
 
       case "readme":
