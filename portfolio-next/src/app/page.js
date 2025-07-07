@@ -53,6 +53,12 @@ const fileStructure = [
             icon: <File className="w-4 h-4 text-green-400" />,
             content: "contact",
           },
+          {
+            name: "cv.pdf",
+            type: "file",
+            icon: <File className="w-4 h-4 text-red-400" />,
+            content: "cv",
+          },
         ],
       },
       {
@@ -270,57 +276,92 @@ export default function VSCodePortfolio() {
 
       case "skills":
         return (
-          <div className="p-6 space-y-6 font-mono text-sm">
-            <div className="flex">
-              <div className="text-gray-500 text-right pr-4 select-none">
-                {[1, 2, 3, 4, 5, 6].map((n) => (
-                  <div key={n}>{n}</div>
-                ))}
-              </div>
-
-              <div className="text-white space-y-0.5">
-                <div>
-                  <span className="text-purple-400">interface</span>{" "}
-                  <span className="text-yellow-400">Skills</span> {"{"}
-                </div>
-                <div>
-                  {"  "}
-                  <span className="text-blue-400">frontend</span>:{" "}
-                  <span className="text-green-400">string[]</span>;
-                </div>
-                <div>
-                  {"  "}
-                  <span className="text-blue-400">backend</span>:{" "}
-                  <span className="text-green-400">string[]</span>;
-                </div>
-                <div>
-                  {"  "}
-                  <span className="text-blue-400">database</span>:{" "}
-                  <span className="text-green-400">string[]</span>;
-                </div>
-                <div>
-                  {"  "}
-                  <span className="text-blue-400">tools</span>:{" "}
-                  <span className="text-green-400">string[]</span>;
-                </div>
-                <div>{"}"}</div>
+          <div className="p-6">
+            <div className="flex items-start gap-4 mb-6">
+              <span className="text-gray-500 text-sm font-mono select-none">1</span>
+              <div>
+                <span className="text-purple-400">interface</span> <span className="text-yellow-300">Skills</span>{" "}
+                <span className="text-yellow-300">{"{"}</span>
               </div>
             </div>
-
-            {Object.entries(skills).map(([category, items]) => (
-              <div key={category}>
-                <h3 className="text-yellow-400 font-bold mb-2 capitalize">
-                  {category}
-                </h3>
-                <div className="flex flex-wrap">
-                  {items.map((skill) => (
-                    <SkillTag key={skill} label={skill} />
-                  ))}
+            <div className="ml-8 space-y-4">
+              <div className="flex items-start gap-4">
+                <span className="text-gray-500 text-sm font-mono select-none">2</span>
+                <div>
+                  <span className="text-blue-300">frontend</span>
+                  <span className="text-white">:</span> <span className="text-green-300">string[]</span>
+                  <span className="text-white">;</span>
                 </div>
               </div>
-            ))}
+              <div className="flex items-start gap-4">
+                <span className="text-gray-500 text-sm font-mono select-none">3</span>
+                <div>
+                  <span className="text-blue-300">backend</span>
+                  <span className="text-white">:</span> <span className="text-green-300">string[]</span>
+                  <span className="text-white">;</span>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <span className="text-gray-500 text-sm font-mono select-none">4</span>
+                <div>
+                  <span className="text-blue-300">database</span>
+                  <span className="text-white">:</span> <span className="text-green-300">string[]</span>
+                  <span className="text-white">;</span>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <span className="text-gray-500 text-sm font-mono select-none">5</span>
+                <div>
+                  <span className="text-blue-300">DevOps</span>
+                  <span className="text-white">:</span> <span className="text-green-300">string[]</span>
+                  <span className="text-white">;</span>
+                </div>
+              </div>
+            </div>
+            <div className="flex items-start gap-4 mt-4">
+              <span className="text-gray-500 text-sm font-mono select-none">6</span>
+              <span className="text-yellow-300">{"}"}</span>
+            </div>
+
+            <div className="mt-8 space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {[
+                  {
+                    category: "Frontend",
+                    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "JavaScript", "HTML", "CSS", "Bootstrap"],
+                  },
+                  {
+                    category: "Backend",
+                    skills: ["Node.js", "Express", "Java", "Kotlin", "Python", "Spring Boot"],
+                  },
+                  {
+                    category: "Database",
+                    skills: ["PostgreSQL", "MongoDB", "MySQL", "Neo4j"],
+                  },
+                  {
+                    category: "DevOps",
+                    skills: ["Docker", "CI/CD", "SonarCloud", "Swagger", "JUnit", "Gradle"],
+                  },
+                  {
+                    category: "Version Control",
+                    skills: ["Git", "GitLab"],
+                  },
+                ].map((group, index) => (
+                  <Card key={index} className="bg-gray-800 border-gray-700 p-4">
+                    <h3 className="text-yellow-300 font-semibold mb-3">{group.category}</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {group.skills.map((skill, i) => (
+                        <Badge key={i} variant="outline" className="border-blue-500 text-blue-300">
+                          {skill}
+                        </Badge>
+                      ))}
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </div>
           </div>
-        );
+        )
 
 
       case "contact":
@@ -363,21 +404,36 @@ export default function VSCodePortfolio() {
             </div>
 
             <div className="mt-8 flex gap-4">
-              <Button className="bg-blue-600 hover:bg-blue-700">
+              <Button
+                className="flex items-center bg-blue-600 hover:bg-blue-700"
+                onClick={() => {
+                  navigator.clipboard.writeText("jarajulieta284@gmail.com");
+                  alert("Email copiado al portapapeles 📋");
+                }}
+              >
                 <Mail className="w-4 h-4 mr-2" />
-                Enviar Email
+                Copiar Email
               </Button>
-              <Button variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-700 bg-transparent">
-                <Github className="w-4 h-4 mr-2" />
-                GitHub
-              </Button>
-              <Button variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-700 bg-transparent">
-                <Linkedin className="w-4 h-4 mr-2" />
-                LinkedIn
-              </Button>
+
+
+              <a href="https://github.com/JulietaJara" target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" className="flex items-center border-gray-600 text-gray-300 hover:bg-gray-700 bg-transparent">
+                  <Github className="w-4 h-4 mr-2" />
+                  GitHub
+                </Button>
+              </a>
+
+              <a href="https://linkedin.com/in/julieta-jara-developer" target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" className="flex items-center border-gray-600 text-gray-300 hover:bg-gray-700 bg-transparent">
+                  <Linkedin className="w-4 h-4 mr-2" />
+                  LinkedIn
+                </Button>
+              </a>
             </div>
           </div>
         )
+
+        
 
       case "readme":
         return (
@@ -458,8 +514,8 @@ export default function VSCodePortfolio() {
               <div
                 key={tab}
                 className={`px-4 py-2 border-r border-gray-700 cursor-pointer flex items-center gap-2 ${activeTab === tab
-                    ? "bg-gray-900 text-white"
-                    : "bg-gray-800 text-gray-400 hover:text-white"
+                  ? "bg-gray-900 text-white"
+                  : "bg-gray-800 text-gray-400 hover:text-white"
                   }`}
                 onClick={() => setActiveTab(tab)}
               >
