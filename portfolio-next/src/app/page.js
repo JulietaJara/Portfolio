@@ -158,95 +158,269 @@ export default function VSCodePortfolio() {
     switch (activeTab) {
       case "about":
         return (
-    <div className="p-6 space-y-4 text-gray-300">
-      <h1 className="text-xl font-bold text-white">Hola, soy Julieta 👋</h1>
-      <p>
-        Soy desarrolladora fullstack junior con experiencia en frontend y backend, enfocada en seguir aprendiendo y creando soluciones eficientes, escalables y con buen diseño. </p>
-      <p>
-        Mis habilidades incluyen <strong>JavaScript</strong>, <strong>React</strong>, <strong>Node.js</strong>, <strong>Java</strong>, <strong>Kotlin</strong>  y más que he desarrollado a lo largo de mi formación y experiencia como desarrolladora fullstack junior.
-      </p>
-      <p>
-        Este portfolio está diseñado como una réplica de Visual Studio Code, combinando diseño y código para mostrar quién soy de una forma diferente.
-      </p>
-    </div>
-  );
+          <div className="p-6 space-y-4 text-gray-300">
+            <h1 className="text-xl font-bold text-white">Hola, soy Julieta 👋</h1>
+            <p>
+              Soy desarrolladora fullstack junior con experiencia en frontend y backend, enfocada en seguir aprendiendo y creando soluciones eficientes, escalables y con buen diseño. </p>
+            <p>
+              Mis habilidades incluyen <strong>JavaScript</strong>, <strong>React</strong>, <strong>Node.js</strong>, <strong>Java</strong>, <strong>Kotlin</strong>  y más que he desarrollado a lo largo de mi formación y experiencia como desarrolladora fullstack junior.
+            </p>
+            <p>
+              Este portfolio está diseñado como una réplica de Visual Studio Code, combinando diseño y código para mostrar quién soy de una forma diferente.
+            </p>
+          </div>
+        );
 
       case "projects":
         return (
           <div className="p-6">
+            <div className="flex items-start gap-4 mb-6">
+              <span className="text-gray-500 text-sm font-mono select-none">1</span>
+              <div>
+                <span className="text-purple-400">const</span> <span className="text-blue-300">projects</span>{" "}
+                <span className="text-white">=</span> <span className="text-yellow-300">[</span>
+              </div>
+            </div>
+            <div className="ml-8 space-y-6">
+              {[
+                {
+                  name: "AutoPick 👛",
+                  tech: ["JavaScript", "HTML ", "CSS", "MySQL", "Express.js"],
+                  description: "Sistema de compras y administración, con funcionalidades completas y conexión a una base de datos MySQL.",
+                  link: "https://tauro-s.vercel.app/"
+                },
+                {
+                  name: "Tauro's 🍭",
+                  tech: ["TypeScript", "Javascript", "CSS"],
+                  description: "Plataforma completa de salón de eventos Tauro's",
+                  link: "#https://tauro-s.vercel.app/",
+                },
+                {
+                  name: "🪨¡Piedra, Papel, Tijera, Lagarto o Spock! ✂️",
+                  tech: ["React", "Javascript", "Bootstrap", "CSS", "HTML"],
+                  description: "Juego interactivo donde compites contra la computadora eligiendo tu jugada.",
+                  link: "https://unq-ui-julieta-jara-trabajo-final.vercel.app/",
+                },
+                {
+                  name: "🔬 Ciencia participativa y juegos 🎮",
+                  tech: ["Java", "Mock", "Mockito", "JUnit"],
+                  description: "📚 Trabajo integrador con principios avanzados de diseño y desarrollo de software orientado a objetos.💻✨",
+                  link: "https://github.com/JulietaJara/unqui-po2-jara",
+                },
+              ].map((project, index) => (
+                <Card key={index} className="bg-gray-800 border-gray-700 p-4">
+                  <div className="flex items-start gap-4 mb-2">
+                    <span className="text-gray-500 text-sm font-mono select-none">{index + 2}</span>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-yellow-300">{"{"}</span>
+                      </div>
+                      <div className="ml-4 space-y-2">
+                        <div>
+                          <span className="text-red-300">name</span>
+                          <span className="text-white">:</span> <span className="text-green-300">"{project.name}"</span>
+                          <span className="text-white">,</span>
+                        </div>
+                        <div>
+                          <span className="text-red-300">description</span>
+                          <span className="text-white">:</span>{" "}
+                          <span className="text-green-300">"{project.description}"</span>
+                          <span className="text-white">,</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-red-300">tech</span>
+                          <span className="text-white">:</span>{" "}
+                          <div className="flex gap-1">
+                            {project.tech.map((tech, i) => (
+                              <Badge key={i} variant="secondary" className="bg-blue-900 text-blue-200">
+                                {tech}
+                              </Badge>
+                            ))}
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <a
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center border border-gray-600 text-gray-300 hover:bg-gray-700 bg-transparent px-3 py-1 rounded text-sm"
+                          >
+                            <ExternalLink className="w-3 h-3 mr-1" />
+                            Ver Proyecto
+                          </a>
+                        </div>
+
+                      </div>
+                      <div className="mt-2">
+                        <span className="text-yellow-300">{"}"}</span>
+                        <span className="text-white">,</span>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+              ))}
+            </div>
+            <div className="flex items-start gap-4 mt-4">
+              <span className="text-gray-500 text-sm font-mono select-none">{5}</span>
+              <span className="text-yellow-300">]</span>
+            </div>
           </div>
-        );
+        )
+
 
       case "skills":
-  return (
-    <div className="p-6 space-y-6 font-mono text-sm">
-      {/* Simulación visual del archivo skills.ts con números de línea */}
-      <div className="flex">
-        {/* Números de línea */}
-        <div className="text-gray-500 text-right pr-4 select-none">
-          {[1, 2, 3, 4, 5, 6].map((n) => (
-            <div key={n}>{n}</div>
-          ))}
-        </div>
+        return (
+          <div className="p-6 space-y-6 font-mono text-sm">
+            <div className="flex">
+              <div className="text-gray-500 text-right pr-4 select-none">
+                {[1, 2, 3, 4, 5, 6].map((n) => (
+                  <div key={n}>{n}</div>
+                ))}
+              </div>
 
-        {/* Código simulado */}
-        <div className="text-white space-y-0.5">
-          <div>
-            <span className="text-purple-400">interface</span>{" "}
-            <span className="text-yellow-400">Skills</span> {"{"}
-          </div>
-          <div>
-            {"  "}
-            <span className="text-blue-400">frontend</span>:{" "}
-            <span className="text-green-400">string[]</span>;
-          </div>
-          <div>
-            {"  "}
-            <span className="text-blue-400">backend</span>:{" "}
-            <span className="text-green-400">string[]</span>;
-          </div>
-          <div>
-            {"  "}
-            <span className="text-blue-400">database</span>:{" "}
-            <span className="text-green-400">string[]</span>;
-          </div>
-          <div>
-            {"  "}
-            <span className="text-blue-400">tools</span>:{" "}
-            <span className="text-green-400">string[]</span>;
-          </div>
-          <div>{"}"}</div>
-        </div>
-      </div>
+              <div className="text-white space-y-0.5">
+                <div>
+                  <span className="text-purple-400">interface</span>{" "}
+                  <span className="text-yellow-400">Skills</span> {"{"}
+                </div>
+                <div>
+                  {"  "}
+                  <span className="text-blue-400">frontend</span>:{" "}
+                  <span className="text-green-400">string[]</span>;
+                </div>
+                <div>
+                  {"  "}
+                  <span className="text-blue-400">backend</span>:{" "}
+                  <span className="text-green-400">string[]</span>;
+                </div>
+                <div>
+                  {"  "}
+                  <span className="text-blue-400">database</span>:{" "}
+                  <span className="text-green-400">string[]</span>;
+                </div>
+                <div>
+                  {"  "}
+                  <span className="text-blue-400">tools</span>:{" "}
+                  <span className="text-green-400">string[]</span>;
+                </div>
+                <div>{"}"}</div>
+              </div>
+            </div>
 
-      {/* Abajo tus skills como etiquetas */}
-      {Object.entries(skills).map(([category, items]) => (
-        <div key={category}>
-          <h3 className="text-yellow-400 font-bold mb-2 capitalize">
-            {category}
-          </h3>
-          <div className="flex flex-wrap">
-            {items.map((skill) => (
-              <SkillTag key={skill} label={skill} />
+            {Object.entries(skills).map(([category, items]) => (
+              <div key={category}>
+                <h3 className="text-yellow-400 font-bold mb-2 capitalize">
+                  {category}
+                </h3>
+                <div className="flex flex-wrap">
+                  {items.map((skill) => (
+                    <SkillTag key={skill} label={skill} />
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
-        </div>
-      ))}
-    </div>
-  );
+        );
 
 
       case "contact":
         return (
           <div className="p-6">
+            <div className="flex items-start gap-4 mb-6">
+              <span className="text-gray-500 text-sm font-mono select-none">1</span>
+              <span className="text-yellow-300">{"{"}</span>
+            </div>
+            <div className="ml-8 space-y-4">
+              <div className="flex items-start gap-4">
+                <span className="text-gray-500 text-sm font-mono select-none">2</span>
+                <div>
+                  <span className="text-red-300">"email"</span>
+                  <span className="text-white">:</span> <span className="text-green-300">"jarajulieta284@gmail.com"</span>
+                  <span className="text-white">,</span>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <span className="text-gray-500 text-sm font-mono select-none">3</span>
+                <div>
+                  <span className="text-red-300">"linkedin"</span>
+                  <span className="text-white">:</span>{" "}
+                  <span className="text-green-300">"linkedin.com/in/julieta-jara-developer"</span>
+                  <span className="text-white">,</span>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <span className="text-gray-500 text-sm font-mono select-none">4</span>
+                <div>
+                  <span className="text-red-300">"github"</span>
+                  <span className="text-white">:</span> <span className="text-green-300">"github.com/JulietaJara"</span>
+                  <span className="text-white">,</span>
+                </div>
+              </div>
+            </div>
+            <div className="flex items-start gap-4 mt-4">
+              <span className="text-gray-500 text-sm font-mono select-none">6</span>
+              <span className="text-yellow-300">{"}"}</span>
+            </div>
+
+            <div className="mt-8 flex gap-4">
+              <Button className="bg-blue-600 hover:bg-blue-700">
+                <Mail className="w-4 h-4 mr-2" />
+                Enviar Email
+              </Button>
+              <Button variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-700 bg-transparent">
+                <Github className="w-4 h-4 mr-2" />
+                GitHub
+              </Button>
+              <Button variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-700 bg-transparent">
+                <Linkedin className="w-4 h-4 mr-2" />
+                LinkedIn
+              </Button>
+            </div>
           </div>
-        );
+        )
 
       case "readme":
         return (
           <div className="p-6">
+            <div className="space-y-4">
+              <div className="flex items-start gap-4">
+                <span className="text-gray-500 text-sm font-mono select-none">1</span>
+                <h1 className="text-2xl font-bold text-white"># Mi Portfolio</h1>
+              </div>
+              <div className="flex items-start gap-4">
+                <span className="text-gray-500 text-sm font-mono select-none">2</span>
+                <div className="text-gray-300">
+                  <p>¡Bienvenido a mi portfolio personal! 👋</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <span className="text-gray-500 text-sm font-mono select-none">3</span>
+                <div className="text-gray-300">
+                  <p>
+                    Este sitio está construido con temática de Visual Studio Code para mostrar mis habilidades y
+                    proyectos de una manera distinta.
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4 mt-6">
+                <span className="text-gray-500 text-sm font-mono select-none">4</span>
+                <h2 className="text-xl font-semibold text-white">## Tecnologías Utilizadas</h2>
+              </div>
+              <div className="flex items-start gap-4">
+                <span className="text-gray-500 text-sm font-mono select-none">5</span>
+                <div className="text-gray-300">
+                  <ul className="list-disc list-inside space-y-1">
+                    <li>Next.js & React</li>
+                    <li>TypeScript</li>
+                    <li>JavaScript</li>
+                    <li>Tailwind CSS</li>
+                    <li>Lucide Icons</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
-        );
+        )
 
       default:
         return (
@@ -283,11 +457,10 @@ export default function VSCodePortfolio() {
             {openTabs.map((tab) => (
               <div
                 key={tab}
-                className={`px-4 py-2 border-r border-gray-700 cursor-pointer flex items-center gap-2 ${
-                  activeTab === tab
+                className={`px-4 py-2 border-r border-gray-700 cursor-pointer flex items-center gap-2 ${activeTab === tab
                     ? "bg-gray-900 text-white"
                     : "bg-gray-800 text-gray-400 hover:text-white"
-                }`}
+                  }`}
                 onClick={() => setActiveTab(tab)}
               >
                 <File className="w-4 h-4" />
@@ -296,12 +469,12 @@ export default function VSCodePortfolio() {
                   {tab === "contact"
                     ? "json"
                     : tab === "skills"
-                    ? "ts"
-                    : tab === "projects"
-                    ? "jsx"
-                    : tab === "readme"
-                    ? "md"
-                    : "js"}
+                      ? "ts"
+                      : tab === "projects"
+                        ? "jsx"
+                        : tab === "readme"
+                          ? "md"
+                          : "js"}
                 </span>
                 <button
                   className="ml-2 hover:bg-gray-600 rounded p-1"
