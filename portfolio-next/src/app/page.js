@@ -493,7 +493,7 @@ export default function VSCodePortfolio() {
                 <div>
                   <span className="text-red-300">downloadUrl</span>
                   <span className="text-white">:</span>{" "}
-                  <span className="text-green-300">"https://drive.google.com/file/d/15RQK33sZMizihJKm_LcasQJR9XthDLBU/view?usp=sharing"</span>
+                  <span className="text-green-300">"https://drive.google.com/file/d/1tKnRK6SmLG8guH-NLWIAydMtIJuEAeUN/view?usp=sharing"</span>
                   <span className="text-white">,</span>
                 </div>
               </div>
@@ -539,7 +539,7 @@ export default function VSCodePortfolio() {
                     <Button
                       className="bg-red-600 hover:bg-red-700 flex-1"
                       onClick={() =>
-                        window.open("https://drive.google.com/file/d/15RQK33sZMizihJKm_LcasQJR9XthDLBU/view?usp=sharing", "_blank")
+                        window.open("https://drive.google.com/file/d/1tKnRK6SmLG8guH-NLWIAydMtIJuEAeUN/view?usp=sharing", "_blank")
                       }
                     >
                       <ExternalLink className="w-4 h-4 mr-2" />
