@@ -170,7 +170,7 @@ export default function VSCodePortfolio() {
                   name: "Tauro's 🍭",
                   tech: ["TypeScript", "Javascript", "CSS"],
                   description: "Plataforma completa de salón de eventos Tauro's",
-                  link: "#https://tauro-s.vercel.app/",
+                  link: "https://tauro-s.vercel.app/",
                 },
                 {
                   name: "🪨¡Piedra, Papel, Tijera, Lagarto o Spock! ✂️",
