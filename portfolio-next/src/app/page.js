@@ -1,3 +1,7 @@
+/* eslint react/no-unescaped-entities: off */
+/* eslint react/jsx-no-comment-textnodes: off */
+
+
 "use client";
 
 import React, { useState } from "react";
@@ -70,22 +74,6 @@ const fileStructure = [
     ],
   },
 ];
-
-const skills = {
-  frontend: ["React", "TypeScript", "JavaScript", "HTML", "CSS", "Bootstrap", "Next.js"],
-  backend: ["Node.js", "Express", "Python", "Java", "Kotlin", "Spring Boot"],
-  database: ["PostgreSQL", "MongoDB", "MySQL", "Neo4j"],
-  devOps: ["Docker", "CI/CD", "SonarCloud", "Swagger", "JUnit", "Gradle"],
-  versionControl: ["Git", "GitLab"]
-};
-
-const SkillTag = ({ label }) => (
-  <span className="bg-blue-900 text-blue-100 px-3 py-1 rounded-full text-sm mr-2 mb-2 inline-block">
-    {label}
-  </span>
-);
-
-
 
 export default function VSCodePortfolio() {
   const [activeTab, setActiveTab] = useState("about");
