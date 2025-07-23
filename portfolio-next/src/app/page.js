@@ -82,16 +82,12 @@ export default function VSCodePortfolio() {
 
   const toggleFolder = (folderName) => {
     setExpandedFolders((prev) =>
-      prev.includes(folderName)
-        ? prev.filter((name) => name !== folderName)
-        : [...prev, folderName]
+      prev.includes(folderName) ? prev.filter((name) => name !== folderName) : [...prev, folderName]
     );
   };
 
   const openTab = (tabName) => {
-    if (!openTabs.includes(tabName)) {
-      setOpenTabs([...openTabs, tabName]);
-    }
+    if (!openTabs.includes(tabName)) setOpenTabs([...openTabs, tabName]);
     setActiveTab(tabName);
   };
 
@@ -99,37 +95,24 @@ export default function VSCodePortfolio() {
     e.stopPropagation();
     const newTabs = openTabs.filter((tab) => tab !== tabName);
     setOpenTabs(newTabs);
-    if (activeTab === tabName && newTabs.length > 0) {
-      setActiveTab(newTabs[newTabs.length - 1]);
-    }
+    if (activeTab === tabName && newTabs.length > 0) setActiveTab(newTabs[newTabs.length - 1]);
   };
 
-  const renderFileTree = (items, level = 0) => {
-    return items.map((item, index) => (
+  const renderFileTree = (items, level = 0) => (
+    items.map((item, index) => (
       <div key={index}>
         <div
           className="flex items-center gap-1 py-1 px-2 hover:bg-gray-700 cursor-pointer text-sm"
           style={{ paddingLeft: `${level * 12 + 8}px` }}
           onClick={() => {
-            if (item.type === "folder") {
-              toggleFolder(item.name);
-            } else if (item.content) {
-              openTab(item.content);
-            }
+            if (item.type === "folder") toggleFolder(item.name);
+            else if (item.content) openTab(item.content);
           }}
         >
           {item.type === "folder" ? (
             <>
-              {expandedFolders.includes(item.name) ? (
-                <ChevronDown className="w-3 h-3" />
-              ) : (
-                <ChevronRight className="w-3 h-3" />
-              )}
-              {expandedFolders.includes(item.name) ? (
-                <FolderOpen className="w-4 h-4 text-blue-400" />
-              ) : (
-                <Folder className="w-4 h-4 text-blue-400" />
-              )}
+              {expandedFolders.includes(item.name) ? <ChevronDown className="w-3 h-3" /> : <ChevronRight className="w-3 h-3" />}
+              {expandedFolders.includes(item.name) ? <FolderOpen className="w-4 h-4 text-blue-400" /> : <Folder className="w-4 h-4 text-blue-400" />}
             </>
           ) : (
             <>
@@ -139,14 +122,12 @@ export default function VSCodePortfolio() {
           )}
           <span className="text-gray-300">{item.name}</span>
         </div>
-        {item.type === "folder" &&
-          item.children &&
-          expandedFolders.includes(item.name) && (
-            <div>{renderFileTree(item.children, level + 1)}</div>
-          )}
+        {item.type === "folder" && item.children && expandedFolders.includes(item.name) && (
+          <div>{renderFileTree(item.children, level + 1)}</div>
+        )}
       </div>
-    ));
-  };
+    ))
+  );
 
   const getContent = () => {
     switch (activeTab) {
@@ -190,7 +171,7 @@ export default function VSCodePortfolio() {
                   name: "Tauro's 🍭",
                   tech: ["TypeScript", "Javascript", "CSS"],
                   description: "Plataforma completa de salón de eventos Tauro's",
-                  link: "#https://tauro-s.vercel.app/",
+                  link: "https://tauro-s.vercel.app/",
                 },
                 {
                   name: "🪨¡Piedra, Papel, Tijera, Lagarto o Spock! ✂️",
@@ -496,7 +477,7 @@ export default function VSCodePortfolio() {
                 <div>
                   <span className="text-red-300">downloadUrl</span>
                   <span className="text-white">:</span>{" "}
-                  <span className="text-green-300">"https://drive.google.com/file/d/15RQK33sZMizihJKm_LcasQJR9XthDLBU/view?usp=sharing"</span>
+                  <span className="text-green-300">"https://drive.google.com/file/d/1tKnRK6SmLG8guH-NLWIAydMtIJuEAeUN/view?usp=sharing"</span>
                   <span className="text-white">,</span>
                 </div>
               </div>
@@ -542,7 +523,7 @@ export default function VSCodePortfolio() {
                     <Button
                       className="bg-red-600 hover:bg-red-700 flex-1"
                       onClick={() =>
-                        window.open("https://drive.google.com/file/d/15RQK33sZMizihJKm_LcasQJR9XthDLBU/view?usp=sharing", "_blank")
+                        window.open("https://drive.google.com/file/d/1tKnRK6SmLG8guH-NLWIAydMtIJuEAeUN/view?usp=sharing", "_blank")
                       }
                     >
                       <ExternalLink className="w-4 h-4 mr-2" />
@@ -601,28 +582,26 @@ export default function VSCodePortfolio() {
 
       default:
         return (
-          <div className="p-6 text-gray-400">
-            Selecciona un archivo para ver su contenido
+          <div className="p-4 sm:p-6 text-white">
+            <p>Seleccioná una pestaña para ver su contenido.</p>
           </div>
         );
     }
   };
 
   return (
-    <div className="h-screen bg-gray-900 text-white flex flex-col">
+    <div className="min-h-screen bg-gray-900 text-white flex flex-col">
       <div className="bg-gray-800 px-4 py-2 flex items-center justify-center border-b border-gray-700">
         <div className="flex items-center gap-2">
           <Code className="w-5 h-5 text-blue-400" />
-          <span className="font-semibold"> Mi Portfolio - Visual Studio Code</span>
+          <span className="font-semibold">Mi Portfolio - Visual Studio Code</span>
         </div>
       </div>
 
-      <div className="flex flex-1 overflow-hidden">
-        <div className="w-64 bg-gray-800 border-r border-gray-700 flex flex-col">
+      <div className="flex flex-1 overflow-hidden flex-col md:flex-row">
+        <div className="w-full md:w-64 bg-gray-800 border-b md:border-b-0 md:border-r border-gray-700 flex flex-col">
           <div className="p-3 border-b border-gray-700">
-            <h2 className="text-sm font-semibold text-gray-300 uppercase tracking-wide">
-              Explorer
-            </h2>
+            <h2 className="text-sm font-semibold text-gray-300 uppercase tracking-wide">Explorer</h2>
           </div>
           <div className="flex-1 overflow-y-auto">
             {renderFileTree(fileStructure)}
@@ -630,33 +609,18 @@ export default function VSCodePortfolio() {
         </div>
 
         <div className="flex-1 flex flex-col">
-          <div className="bg-gray-800 border-b border-gray-700 flex">
+          <div className="bg-gray-800 border-b border-gray-700 flex overflow-x-auto">
             {openTabs.map((tab) => (
               <div
                 key={tab}
-                className={`px-4 py-2 border-r border-gray-700 cursor-pointer flex items-center gap-2 ${activeTab === tab
-                  ? "bg-gray-900 text-white"
-                  : "bg-gray-800 text-gray-400 hover:text-white"
-                  }`}
+                className={`px-4 py-2 border-r border-gray-700 cursor-pointer flex items-center gap-2 whitespace-nowrap ${activeTab === tab ? "bg-gray-900 text-white" : "bg-gray-800 text-gray-400 hover:text-white"}`}
                 onClick={() => setActiveTab(tab)}
               >
                 <File className="w-4 h-4" />
                 <span className="text-sm">
-                  {tab}.
-                  {tab === "contact"
-                    ? "json"
-                    : tab === "skills"
-                      ? "ts"
-                      : tab === "projects"
-                        ? "jsx"
-                        : tab === "readme"
-                          ? "md"
-                          : "js"}
+                  {tab}.{tab === "contact" ? "json" : tab === "skills" ? "ts" : tab === "projects" ? "jsx" : tab === "readme" ? "md" : "js"}
                 </span>
-                <button
-                  className="ml-2 hover:bg-gray-600 rounded p-1"
-                  onClick={(e) => closeTab(tab, e)}
-                >
+                <button className="ml-2 hover:bg-gray-600 rounded p-1" onClick={(e) => closeTab(tab, e)}>
                   ×
                 </button>
               </div>
@@ -664,9 +628,7 @@ export default function VSCodePortfolio() {
           </div>
 
           <div className="flex-1 bg-gray-900 overflow-y-auto font-mono text-sm">
-            {openTabs.length > 0 ? (
-              getContent()
-            ) : (
+            {openTabs.length > 0 ? getContent() : (
               <div className="flex items-center justify-center h-full text-gray-500">
                 <div className="text-center">
                   <Code className="w-16 h-16 mx-auto mb-4 opacity-50" />
@@ -676,12 +638,12 @@ export default function VSCodePortfolio() {
             )}
           </div>
 
-          <div className="bg-blue-600 px-4 py-1 text-xs flex items-center justify-between">
+          <div className="bg-blue-600 px-4 py-1 text-xs flex items-center justify-between flex-wrap gap-2">
             <div className="flex items-center gap-4">
               <span>UTF-8</span>
               <span>JavaScript</span>
               <span>Ln 1, Col 1</span>
-            </div>Portfolio Julieta Jara - Visual Studio Code
+            </div>
             <div className="flex items-center gap-2">
               <span>Portfolio v1.0.0</span>
             </div>
