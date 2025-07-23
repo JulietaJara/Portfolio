@@ -358,7 +358,6 @@ export default function VSCodePortfolio() {
               <span className="text-gray-500 text-xs sm:text-sm font-mono select-none">6</span>
               <span className="text-yellow-300">]</span>
             </div>
-            {/* Modal para video */}
             <Dialog open={isVideoModalOpen} onOpenChange={setIsVideoModalOpen}>
               <DialogContent className="max-w-[95vw] sm:max-w-4xl bg-gray-900 border-gray-700 max-h-[90vh] overflow-y-auto">
                 <DialogHeader>
@@ -608,7 +607,7 @@ export default function VSCodePortfolio() {
                   <span className="text-red-300">downloadUrl</span>
                   <span className="text-white">:</span>{" "}
                   <span className="text-green-300">
-                    "https://drive.google.com/file/d/15RQK33sZMizihJKm_LcasQJR9XthDLBU/view?usp=sharing"
+                    "https://drive.google.com/file/d/1tKnRK6SmLG8guH-NLWIAydMtIJuEAeUN/view?usp=sharing"
                   </span>
                   <span className="text-white">,</span>
                 </div>
@@ -653,7 +652,7 @@ export default function VSCodePortfolio() {
                       className="bg-red-600 hover:bg-red-700 flex-1 touch-manipulation"
                       onClick={() =>
                         window.open(
-                          "https://drive.google.com/file/d/15RQK33sZMizihJKm_LcasQJR9XthDLBU/view?usp=sharing",
+                          "https://drive.google.com/file/d/1tKnRK6SmLG8guH-NLWIAydMtIJuEAeUN/view?usp=sharing",
                           "_blank",
                         )
                       }
