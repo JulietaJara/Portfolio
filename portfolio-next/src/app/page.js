@@ -16,11 +16,16 @@ import {
   Github,
   Linkedin,
   ExternalLink,
+  Play, 
+  VolumeX,
+  Maximize,
+  Volume2,
 } from "lucide-react";
 
 import { Button } from "../app/components/ui/button";
 import { Card } from "../app/components/ui/card";
 import { Badge } from "../app/components/ui/badge";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../app/components/ui/dialog"
 
 const fileStructure = [
   {
@@ -76,33 +81,38 @@ const fileStructure = [
 ];
 
 export default function VSCodePortfolio() {
-  const [activeTab, setActiveTab] = useState("about");
-  const [openTabs, setOpenTabs] = useState(["about"]);
-  const [expandedFolders, setExpandedFolders] = useState(["portfolio", "src"]);
+  const [activeTab, setActiveTab] = useState("about")
+  const [openTabs, setOpenTabs] = useState(["about"])
+  const [expandedFolders, setExpandedFolders] = useState(["portfolio", "src"])
+  const [selectedVideo, setSelectedVideo] = useState(null)
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
 
   const toggleFolder = (folderName) => {
     setExpandedFolders((prev) =>
-      prev.includes(folderName)
-        ? prev.filter((name) => name !== folderName)
-        : [...prev, folderName]
-    );
-  };
+      prev.includes(folderName) ? prev.filter((name) => name !== folderName) : [...prev, folderName],
+    )
+  }
 
   const openTab = (tabName) => {
     if (!openTabs.includes(tabName)) {
-      setOpenTabs([...openTabs, tabName]);
+      setOpenTabs([...openTabs, tabName])
     }
-    setActiveTab(tabName);
-  };
+    setActiveTab(tabName)
+  }
 
   const closeTab = (tabName, e) => {
-    e.stopPropagation();
-    const newTabs = openTabs.filter((tab) => tab !== tabName);
-    setOpenTabs(newTabs);
+    e.stopPropagation()
+    const newTabs = openTabs.filter((tab) => tab !== tabName)
+    setOpenTabs(newTabs)
     if (activeTab === tabName && newTabs.length > 0) {
-      setActiveTab(newTabs[newTabs.length - 1]);
+      setActiveTab(newTabs[newTabs.length - 1])
     }
-  };
+  }
+
+  const openVideoModal = (project) => {
+    setSelectedVideo(project)
+    setIsVideoModalOpen(true)
+  }
 
   const renderFileTree = (items, level = 0) => {
     return items.map((item, index) => (
@@ -112,9 +122,9 @@ export default function VSCodePortfolio() {
           style={{ paddingLeft: `${level * 12 + 8}px` }}
           onClick={() => {
             if (item.type === "folder") {
-              toggleFolder(item.name);
+              toggleFolder(item.name)
             } else if (item.content) {
-              openTab(item.content);
+              openTab(item.content)
             }
           }}
         >
@@ -139,14 +149,72 @@ export default function VSCodePortfolio() {
           )}
           <span className="text-gray-300">{item.name}</span>
         </div>
-        {item.type === "folder" &&
-          item.children &&
-          expandedFolders.includes(item.name) && (
-            <div>{renderFileTree(item.children, level + 1)}</div>
-          )}
+        {item.type === "folder" && item.children && expandedFolders.includes(item.name) && (
+          <div>{renderFileTree(item.children, level + 1)}</div>
+        )}
       </div>
-    ));
-  };
+    ))
+  }
+
+  const VideoPlayer = ({ project, isInModal = false }) => {
+    const [isPlaying, setIsPlaying] = useState(false)
+    const [isMuted, setIsMuted] = useState(true)
+
+    return (
+      <div className={`relative bg-black rounded-lg overflow-hidden ${isInModal ? "w-full" : ""}`}>
+        <video
+          className="w-full h-auto"
+          controls={isInModal}
+          muted={isMuted}
+          poster="/placeholder.svg?height=300&width=500"
+          onPlay={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
+        >
+          <source src={project.videoUrl} type="video/mp4" />
+          Tu navegador no soporta el elemento de video.
+        </video>
+
+        {!isInModal && (
+          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center group hover:bg-opacity-30 transition-all">
+            <div className="flex items-center gap-4">
+              <Button
+                size="lg"
+                className="bg-blue-600 hover:bg-blue-700 rounded-full p-4"
+                onClick={() => openVideoModal(project)}
+              >
+                <Play className="w-6 h-6" />
+              </Button>
+              <div className="text-white">
+                <p className="font-semibold">Ver Demo</p>
+                <p className="text-sm text-gray-300">Haz clic para reproducir</p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <div className="absolute bottom-2 right-2 flex gap-2">
+          <Button
+            size="sm"
+            variant="secondary"
+            className="bg-gray-800 bg-opacity-80 hover:bg-opacity-100"
+            onClick={() => setIsMuted(!isMuted)}
+          >
+            {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+          </Button>
+          {!isInModal && (
+            <Button
+              size="sm"
+              variant="secondary"
+              className="bg-gray-800 bg-opacity-80 hover:bg-opacity-100"
+              onClick={() => openVideoModal(project)}
+            >
+              <Maximize className="w-4 h-4" />
+            </Button>
+          )}
+        </div>
+      </div>
+    )
+  }
 
   const getContent = () => {
     switch (activeTab) {
@@ -155,15 +223,20 @@ export default function VSCodePortfolio() {
           <div className="p-6 space-y-4 text-gray-300">
             <h1 className="text-xl font-bold text-white">Hola, soy Julieta 👋</h1>
             <p>
-              Soy desarrolladora fullstack junior con experiencia en frontend y backend, enfocada en seguir aprendiendo y creando soluciones eficientes, escalables y con buen diseño. </p>
-            <p>
-              Mis habilidades incluyen <strong>JavaScript</strong>, <strong>React</strong>, <strong>Node.js</strong>, <strong>Java</strong>, <strong>Kotlin</strong>  y más que he desarrollado a lo largo de mi formación y experiencia como desarrolladora fullstack junior.
+              Soy desarrolladora fullstack junior con experiencia en frontend y backend, enfocada en seguir aprendiendo
+              y creando soluciones eficientes, escalables y con buen diseño.
             </p>
             <p>
-              Este portfolio está diseñado como una réplica de Visual Studio Code, combinando diseño y código para mostrar quién soy de una forma diferente.
+              Mis habilidades incluyen <strong>JavaScript</strong>, <strong>React</strong>, <strong>Node.js</strong>,{" "}
+              <strong>Java</strong>, <strong>Kotlin</strong> y más que he desarrollado a lo largo de mi formación y
+              experiencia como desarrolladora fullstack junior.
+            </p>
+            <p>
+              Este portfolio está diseñado como una réplica de Visual Studio Code, combinando diseño y código para
+              mostrar quién soy de una forma diferente.
             </p>
           </div>
-        );
+        )
 
       case "projects":
         return (
@@ -171,33 +244,34 @@ export default function VSCodePortfolio() {
             <div className="flex items-start gap-4 mb-6">
               <span className="text-gray-500 text-sm font-mono select-none">1</span>
               <div>
-                <span className="text-purple-400">const</span>{" "}
-                <span className="text-blue-300">projects</span>{" "}
-                <span className="text-white">=</span>{" "}
-                <span className="text-yellow-300">[</span>
+                <span className="text-purple-400">const</span> <span className="text-blue-300">projects</span>{" "}
+                <span className="text-white">=</span> <span className="text-yellow-300">[</span>
               </div>
             </div>
             <div className="ml-4 sm:ml-8 space-y-6">
               {[
                 {
                   name: "AutoPick 👛",
-                  tech: ["JavaScript", "HTML ", "CSS", "MySQL", "Express.js"],
+                  tech: ["JavaScript", "HTML", "CSS", "MySQL", "Express.js"],
                   description:
                     "Sistema de compras y administración, con funcionalidades completas y conexión a una base de datos MySQL.",
-                  link: "https://lnkd.in/d-4NYbW2",
+                  videoUrl: "/Proyecto autopick.mp4",
+                  type: "video",
                 },
                 {
                   name: "Tauro's 🍭",
                   tech: ["TypeScript", "Javascript", "CSS"],
-                  description: "Plataforma completa de salón de eventos Tauro's",
-                  link: "#https://tauro-s.vercel.app/",
+                  description:
+                    "Plataforma completa de salón de eventos Tauro's con sistema de reservas y gestión de eventos.",
+                  link: "https://tauro-s.vercel.app/",
+                  type: "link",
                 },
                 {
                   name: "🪨¡Piedra, Papel, Tijera, Lagarto o Spock! ✂️",
                   tech: ["React", "Javascript", "Bootstrap", "CSS", "HTML"],
-                  description:
-                    "Juego interactivo donde compites contra la computadora eligiendo tu jugada.",
+                  description: "Juego interactivo donde compites contra la computadora eligiendo tu jugada.",
                   link: "https://unq-ui-julieta-jara-trabajo-final.vercel.app/",
+                  type: "link",
                 },
                 {
                   name: "🔬 Ciencia participativa y juegos 🎮",
@@ -205,13 +279,12 @@ export default function VSCodePortfolio() {
                   description:
                     "📚 Trabajo integrador con principios avanzados de diseño y desarrollo de software orientado a objetos.💻✨",
                   link: "https://github.com/JulietaJara/unqui-po2-jara",
+                  type: "link",
                 },
               ].map((project, index) => (
                 <Card key={index} className="bg-gray-800 border-gray-700 p-4">
                   <div className="flex flex-col sm:flex-row items-start gap-4 mb-2">
-                    <span className="text-gray-500 text-sm font-mono select-none">
-                      {index + 2}
-                    </span>
+                    <span className="text-gray-500 text-sm font-mono select-none">{index + 2}</span>
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
                         <span className="text-yellow-300">{`{`}</span>
@@ -220,17 +293,13 @@ export default function VSCodePortfolio() {
                         <div>
                           <span className="text-red-300">name</span>
                           <span className="text-white">:</span>{" "}
-                          <span className="text-green-300">
-                            &quot;{project.name}&quot;
-                          </span>
+                          <span className="text-green-300">&quot;{project.name}&quot;</span>
                           <span className="text-white">,</span>
                         </div>
                         <div>
                           <span className="text-red-300">description</span>
                           <span className="text-white">:</span>{" "}
-                          <span className="text-green-300">
-                            &quot;{project.description}&quot;
-                          </span>
+                          <span className="text-green-300">&quot;{project.description}&quot;</span>
                           <span className="text-white">,</span>
                         </div>
                         <div className="flex flex-wrap items-center gap-2">
@@ -238,27 +307,39 @@ export default function VSCodePortfolio() {
                           <span className="text-white">:</span>{" "}
                           <div className="flex flex-wrap gap-1">
                             {project.tech.map((tech, i) => (
-                              <Badge
-                                key={i}
-                                variant="secondary"
-                                className="bg-blue-900 text-blue-200"
-                              >
+                              <Badge key={i} variant="secondary" className="bg-blue-900 text-blue-200">
                                 {tech}
                               </Badge>
                             ))}
                           </div>
                         </div>
-                        <div className="flex flex-wrap items-center gap-2">
-                          <a
-                            href={project.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center border border-gray-600 text-gray-300 hover:bg-gray-700 bg-transparent px-3 py-1 rounded text-sm w-full sm:w-auto justify-center"
-                          >
-                            <ExternalLink className="w-3 h-3 mr-1" />
-                            Ver Proyecto
-                          </a>
-                        </div>
+
+                        {/* Video o Link */}
+                        {project.type === "video" ? (
+                          <div className="space-y-2">
+                            <div>
+                              <span className="text-red-300">demo</span>
+                              <span className="text-white">:</span>{" "}
+                              <span className="text-green-300">&quot;video&quot;</span>
+                              <span className="text-white">,</span>
+                            </div>
+                            <div className="mt-4">
+                              <VideoPlayer project={project} />
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="flex flex-wrap items-center gap-2">
+                            <a
+                              href={project.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center border border-gray-600 text-gray-300 hover:bg-gray-700 bg-transparent px-3 py-1 rounded text-sm w-full sm:w-auto justify-center"
+                            >
+                              <ExternalLink className="w-3 h-3 mr-1" />
+                              Ver Proyecto
+                            </a>
+                          </div>
+                        )}
                       </div>
                       <div className="mt-2">
                         <span className="text-yellow-300">{`}`}</span>
@@ -270,12 +351,38 @@ export default function VSCodePortfolio() {
               ))}
             </div>
             <div className="flex items-start gap-4 mt-4">
-              <span className="text-gray-500 text-sm font-mono select-none">{6}</span>
+              <span className="text-gray-500 text-sm font-mono select-none">6</span>
               <span className="text-yellow-300">]</span>
             </div>
-          </div>
-        );
 
+            {/* Modal para video */}
+            <Dialog open={isVideoModalOpen} onOpenChange={setIsVideoModalOpen}>
+              <DialogContent className="max-w-4xl bg-gray-900 border-gray-700">
+                <DialogHeader>
+                  <DialogTitle className="text-white flex items-center gap-2">
+                    <Play className="w-5 h-5 text-blue-400" />
+                    {selectedVideo?.name} - Demo
+                  </DialogTitle>
+                </DialogHeader>
+                {selectedVideo && (
+                  <div className="space-y-4">
+                    <VideoPlayer project={selectedVideo} isInModal={true} />
+                    <div className="text-gray-300">
+                      <p className="mb-2">{selectedVideo.description}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {selectedVideo.tech?.map((tech, i) => (
+                          <Badge key={i} variant="outline" className="border-blue-500 text-blue-300">
+                            {tech}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </DialogContent>
+            </Dialog>
+          </div>
+        )
 
       case "skills":
         return (
@@ -325,13 +432,21 @@ export default function VSCodePortfolio() {
               <span className="text-gray-500 text-sm font-mono select-none">6</span>
               <span className="text-yellow-300">{"}"}</span>
             </div>
-
             <div className="mt-8 space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
                   {
                     category: "Frontend",
-                    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "JavaScript", "HTML", "CSS", "Bootstrap"],
+                    skills: [
+                      "React",
+                      "Next.js",
+                      "TypeScript",
+                      "Tailwind CSS",
+                      "JavaScript",
+                      "HTML",
+                      "CSS",
+                      "Bootstrap",
+                    ],
                   },
                   {
                     category: "Backend",
@@ -366,7 +481,6 @@ export default function VSCodePortfolio() {
           </div>
         )
 
-
       case "contact":
         return (
           <div className="p-6">
@@ -379,7 +493,8 @@ export default function VSCodePortfolio() {
                 <span className="text-gray-500 text-sm font-mono select-none">2</span>
                 <div>
                   <span className="text-red-300">"email"</span>
-                  <span className="text-white">:</span> <span className="text-green-300">"jarajulieta284@gmail.com"</span>
+                  <span className="text-white">:</span>{" "}
+                  <span className="text-green-300">"jarajulieta284@gmail.com"</span>
                   <span className="text-white">,</span>
                 </div>
               </div>
@@ -405,29 +520,31 @@ export default function VSCodePortfolio() {
               <span className="text-gray-500 text-sm font-mono select-none">5</span>
               <span className="text-yellow-300">{"}"}</span>
             </div>
-
             <div className="mt-8 flex gap-4">
               <Button
                 className="flex items-center bg-blue-600 hover:bg-blue-700"
                 onClick={() => {
-                  navigator.clipboard.writeText("jarajulieta284@gmail.com");
-                  alert("Email copiado al portapapeles 📋");
+                  navigator.clipboard.writeText("jarajulieta284@gmail.com")
+                  alert("Email copiado al portapapeles 📋")
                 }}
               >
                 <Mail className="w-4 h-4 mr-2" />
                 Copiar Email
               </Button>
-
-
               <a href="https://github.com/JulietaJara" target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" className="flex items-center border-gray-600 text-gray-300 hover:bg-gray-700 bg-transparent">
+                <Button
+                  variant="outline"
+                  className="flex items-center border-gray-600 text-gray-300 hover:bg-gray-700 bg-transparent"
+                >
                   <Github className="w-4 h-4 mr-2" />
                   GitHub
                 </Button>
               </a>
-
               <a href="https://linkedin.com/in/julieta-jara-developer" target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" className="flex items-center border-gray-600 text-gray-300 hover:bg-gray-700 bg-transparent">
+                <Button
+                  variant="outline"
+                  className="flex items-center border-gray-600 text-gray-300 hover:bg-gray-700 bg-transparent"
+                >
                   <Linkedin className="w-4 h-4 mr-2" />
                   LinkedIn
                 </Button>
@@ -445,7 +562,6 @@ export default function VSCodePortfolio() {
                 <span className="text-gray-500">// Curriculum Vitae - PDF Document</span>
               </div>
             </div>
-
             <div className="flex items-start gap-4 mb-4">
               <span className="text-gray-500 text-sm font-mono select-none">2</span>
               <div>
@@ -453,7 +569,6 @@ export default function VSCodePortfolio() {
                 <span className="text-white">=</span> <span className="text-yellow-300">{"{"}</span>
               </div>
             </div>
-
             <div className="ml-8 space-y-4">
               <div className="flex items-start gap-4">
                 <span className="text-gray-500 text-sm font-mono select-none">3</span>
@@ -463,7 +578,6 @@ export default function VSCodePortfolio() {
                   <span className="text-white">,</span>
                 </div>
               </div>
-
               <div className="flex items-start gap-4">
                 <span className="text-gray-500 text-sm font-mono select-none">4</span>
                 <div>
@@ -472,7 +586,6 @@ export default function VSCodePortfolio() {
                   <span className="text-white">,</span>
                 </div>
               </div>
-
               <div className="flex items-start gap-4">
                 <span className="text-gray-500 text-sm font-mono select-none">5</span>
                 <div>
@@ -481,7 +594,6 @@ export default function VSCodePortfolio() {
                   <span className="text-white">,</span>
                 </div>
               </div>
-
               <div className="flex items-start gap-4">
                 <span className="text-gray-500 text-sm font-mono select-none">6</span>
                 <div>
@@ -490,18 +602,18 @@ export default function VSCodePortfolio() {
                   <span className="text-white">,</span>
                 </div>
               </div>
-
               <div className="flex items-start gap-4">
                 <span className="text-gray-500 text-sm font-mono select-none">7</span>
                 <div>
                   <span className="text-red-300">downloadUrl</span>
                   <span className="text-white">:</span>{" "}
-                  <span className="text-green-300">"https://drive.google.com/file/d/15RQK33sZMizihJKm_LcasQJR9XthDLBU/view?usp=sharing"</span>
+                  <span className="text-green-300">
+                    "https://drive.google.com/file/d/15RQK33sZMizihJKm_LcasQJR9XthDLBU/view?usp=sharing"
+                  </span>
                   <span className="text-white">,</span>
                 </div>
               </div>
             </div>
-
             <div className="flex items-start gap-4 mt-4">
               <span className="text-gray-500 text-sm font-mono select-none">8</span>
               <span className="text-yellow-300">{"}"}</span>
@@ -517,7 +629,6 @@ export default function VSCodePortfolio() {
                     <p className="text-gray-400 text-sm">Documento PDF - Actualizado recientemente</p>
                   </div>
                 </div>
-
                 <div className="space-y-4">
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
@@ -537,12 +648,14 @@ export default function VSCodePortfolio() {
                       <span className="text-white ml-2">2.4 MB</span>
                     </div>
                   </div>
-
                   <div className="flex gap-3 pt-4">
                     <Button
                       className="bg-red-600 hover:bg-red-700 flex-1"
                       onClick={() =>
-                        window.open("https://drive.google.com/file/d/15RQK33sZMizihJKm_LcasQJR9XthDLBU/view?usp=sharing", "_blank")
+                        window.open(
+                          "https://drive.google.com/file/d/15RQK33sZMizihJKm_LcasQJR9XthDLBU/view?usp=sharing",
+                          "_blank",
+                        )
                       }
                     >
                       <ExternalLink className="w-4 h-4 mr-2" />
@@ -554,7 +667,6 @@ export default function VSCodePortfolio() {
             </div>
           </div>
         )
-
 
       case "readme":
         return (
@@ -600,44 +712,33 @@ export default function VSCodePortfolio() {
         )
 
       default:
-        return (
-          <div className="p-6 text-gray-400">
-            Selecciona un archivo para ver su contenido
-          </div>
-        );
+        return <div className="p-6 text-gray-400">Selecciona un archivo para ver su contenido</div>
     }
-  };
+  }
 
   return (
     <div className="h-screen bg-gray-900 text-white flex flex-col">
       <div className="bg-gray-800 px-4 py-2 flex items-center justify-center border-b border-gray-700">
         <div className="flex items-center gap-2">
           <Code className="w-5 h-5 text-blue-400" />
-          <span className="font-semibold"> Mi Portfolio - Visual Studio Code</span>
+          <span className="font-semibold">Mi Portfolio - Visual Studio Code</span>
         </div>
       </div>
-
       <div className="flex flex-1 overflow-hidden">
         <div className="w-64 bg-gray-800 border-r border-gray-700 flex flex-col">
           <div className="p-3 border-b border-gray-700">
-            <h2 className="text-sm font-semibold text-gray-300 uppercase tracking-wide">
-              Explorer
-            </h2>
+            <h2 className="text-sm font-semibold text-gray-300 uppercase tracking-wide">Explorer</h2>
           </div>
-          <div className="flex-1 overflow-y-auto">
-            {renderFileTree(fileStructure)}
-          </div>
+          <div className="flex-1 overflow-y-auto">{renderFileTree(fileStructure)}</div>
         </div>
-
         <div className="flex-1 flex flex-col">
           <div className="bg-gray-800 border-b border-gray-700 flex">
             {openTabs.map((tab) => (
               <div
                 key={tab}
-                className={`px-4 py-2 border-r border-gray-700 cursor-pointer flex items-center gap-2 ${activeTab === tab
-                  ? "bg-gray-900 text-white"
-                  : "bg-gray-800 text-gray-400 hover:text-white"
-                  }`}
+                className={`px-4 py-2 border-r border-gray-700 cursor-pointer flex items-center gap-2 ${
+                  activeTab === tab ? "bg-gray-900 text-white" : "bg-gray-800 text-gray-400 hover:text-white"
+                }`}
                 onClick={() => setActiveTab(tab)}
               >
                 <File className="w-4 h-4" />
@@ -653,16 +754,12 @@ export default function VSCodePortfolio() {
                           ? "md"
                           : "js"}
                 </span>
-                <button
-                  className="ml-2 hover:bg-gray-600 rounded p-1"
-                  onClick={(e) => closeTab(tab, e)}
-                >
+                <button className="ml-2 hover:bg-gray-600 rounded p-1" onClick={(e) => closeTab(tab, e)}>
                   ×
                 </button>
               </div>
             ))}
           </div>
-
           <div className="flex-1 bg-gray-900 overflow-y-auto font-mono text-sm">
             {openTabs.length > 0 ? (
               getContent()
@@ -675,13 +772,15 @@ export default function VSCodePortfolio() {
               </div>
             )}
           </div>
-
           <div className="bg-blue-600 px-4 py-1 text-xs flex items-center justify-between">
             <div className="flex items-center gap-4">
               <span>UTF-8</span>
               <span>JavaScript</span>
               <span>Ln 1, Col 1</span>
-            </div>Portfolio Julieta Jara - Visual Studio Code
+            </div>
+            <div className="flex items-center gap-2">
+              <span>Portfolio Julieta Jara - Visual Studio Code</span>
+            </div>
             <div className="flex items-center gap-2">
               <span>Portfolio v1.0.0</span>
             </div>
@@ -689,5 +788,5 @@ export default function VSCodePortfolio() {
         </div>
       </div>
     </div>
-  );
+  )
 }
