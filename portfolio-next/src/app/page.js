@@ -1,3 +1,7 @@
+/* eslint react/no-unescaped-entities: off */
+/* eslint react/jsx-no-comment-textnodes: off */
+
+
 "use client";
 
 import React, { useState } from "react";
@@ -70,12 +74,6 @@ const fileStructure = [
     ],
   },
 ];
-
-const SkillTag = ({ label }) => (
-  <span className="bg-blue-900 text-blue-100 px-3 py-1 rounded-full text-sm mr-2 mb-2 inline-block">
-    {label}
-  </span>
-);
 
 export default function VSCodePortfolio() {
   const [activeTab, setActiveTab] = useState("about");
@@ -150,21 +148,24 @@ export default function VSCodePortfolio() {
 
       case "projects":
         return (
-          <div className="p-6">
+          <div className="p-4 sm:p-6 max-w-screen-lg mx-auto">
             <div className="flex items-start gap-4 mb-6">
               <span className="text-gray-500 text-sm font-mono select-none">1</span>
               <div>
-                <span className="text-purple-400">const</span> <span className="text-blue-300">projects</span>{" "}
-                <span className="text-white">=</span> <span className="text-yellow-300">[</span>
+                <span className="text-purple-400">const</span>{" "}
+                <span className="text-blue-300">projects</span>{" "}
+                <span className="text-white">=</span>{" "}
+                <span className="text-yellow-300">[</span>
               </div>
             </div>
-            <div className="ml-8 space-y-6">
+            <div className="ml-4 sm:ml-8 space-y-6">
               {[
                 {
                   name: "AutoPick 👛",
                   tech: ["JavaScript", "HTML ", "CSS", "MySQL", "Express.js"],
-                  description: "Sistema de compras y administración, con funcionalidades completas y conexión a una base de datos MySQL.",
-                  link: "https://lnkd.in/d-4NYbW2"
+                  description:
+                    "Sistema de compras y administración, con funcionalidades completas y conexión a una base de datos MySQL.",
+                  link: "https://lnkd.in/d-4NYbW2",
                 },
                 {
                   name: "Tauro's 🍭",
@@ -175,61 +176,73 @@ export default function VSCodePortfolio() {
                 {
                   name: "🪨¡Piedra, Papel, Tijera, Lagarto o Spock! ✂️",
                   tech: ["React", "Javascript", "Bootstrap", "CSS", "HTML"],
-                  description: "Juego interactivo donde compites contra la computadora eligiendo tu jugada.",
+                  description:
+                    "Juego interactivo donde compites contra la computadora eligiendo tu jugada.",
                   link: "https://unq-ui-julieta-jara-trabajo-final.vercel.app/",
                 },
                 {
                   name: "🔬 Ciencia participativa y juegos 🎮",
                   tech: ["Java", "Mock", "Mockito", "JUnit"],
-                  description: "📚 Trabajo integrador con principios avanzados de diseño y desarrollo de software orientado a objetos.💻✨",
+                  description:
+                    "📚 Trabajo integrador con principios avanzados de diseño y desarrollo de software orientado a objetos.💻✨",
                   link: "https://github.com/JulietaJara/unqui-po2-jara",
                 },
               ].map((project, index) => (
                 <Card key={index} className="bg-gray-800 border-gray-700 p-4">
-                  <div className="flex items-start gap-4 mb-2">
-                    <span className="text-gray-500 text-sm font-mono select-none">{index + 2}</span>
+                  <div className="flex flex-col sm:flex-row items-start gap-4 mb-2">
+                    <span className="text-gray-500 text-sm font-mono select-none">
+                      {index + 2}
+                    </span>
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
-                        <span className="text-yellow-300">{"{"}</span>
+                        <span className="text-yellow-300">{`{`}</span>
                       </div>
                       <div className="ml-4 space-y-2">
                         <div>
                           <span className="text-red-300">name</span>
-                          <span className="text-white">:</span> <span className="text-green-300">"{project.name}"</span>
+                          <span className="text-white">:</span>{" "}
+                          <span className="text-green-300">
+                            &quot;{project.name}&quot;
+                          </span>
                           <span className="text-white">,</span>
                         </div>
                         <div>
                           <span className="text-red-300">description</span>
                           <span className="text-white">:</span>{" "}
-                          <span className="text-green-300">"{project.description}"</span>
+                          <span className="text-green-300">
+                            &quot;{project.description}&quot;
+                          </span>
                           <span className="text-white">,</span>
                         </div>
-                        <div className="flex items-center gap-2">
+                        <div className="flex flex-wrap items-center gap-2">
                           <span className="text-red-300">tech</span>
                           <span className="text-white">:</span>{" "}
-                          <div className="flex gap-1">
+                          <div className="flex flex-wrap gap-1">
                             {project.tech.map((tech, i) => (
-                              <Badge key={i} variant="secondary" className="bg-blue-900 text-blue-200">
+                              <Badge
+                                key={i}
+                                variant="secondary"
+                                className="bg-blue-900 text-blue-200"
+                              >
                                 {tech}
                               </Badge>
                             ))}
                           </div>
                         </div>
-                        <div className="flex items-center gap-2">
+                        <div className="flex flex-wrap items-center gap-2">
                           <a
                             href={project.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center border border-gray-600 text-gray-300 hover:bg-gray-700 bg-transparent px-3 py-1 rounded text-sm"
+                            className="inline-flex items-center border border-gray-600 text-gray-300 hover:bg-gray-700 bg-transparent px-3 py-1 rounded text-sm w-full sm:w-auto justify-center"
                           >
                             <ExternalLink className="w-3 h-3 mr-1" />
                             Ver Proyecto
                           </a>
                         </div>
-
                       </div>
                       <div className="mt-2">
-                        <span className="text-yellow-300">{"}"}</span>
+                        <span className="text-yellow-300">{`}`}</span>
                         <span className="text-white">,</span>
                       </div>
                     </div>
@@ -238,11 +251,11 @@ export default function VSCodePortfolio() {
               ))}
             </div>
             <div className="flex items-start gap-4 mt-4">
-              <span className="text-gray-500 text-sm font-mono select-none">{5}</span>
+              <span className="text-gray-500 text-sm font-mono select-none">{6}</span>
               <span className="text-yellow-300">]</span>
             </div>
           </div>
-        )
+        );
 
 
       case "skills":
@@ -370,7 +383,7 @@ export default function VSCodePortfolio() {
               </div>
             </div>
             <div className="flex items-start gap-4 mt-4">
-              <span className="text-gray-500 text-sm font-mono select-none">6</span>
+              <span className="text-gray-500 text-sm font-mono select-none">5</span>
               <span className="text-yellow-300">{"}"}</span>
             </div>
 
@@ -404,7 +417,7 @@ export default function VSCodePortfolio() {
           </div>
         )
 
-        case "cv":
+      case "cv":
         return (
           <div className="p-6">
             <div className="flex items-start gap-4 mb-6">
@@ -522,7 +535,7 @@ export default function VSCodePortfolio() {
             </div>
           </div>
         )
-        
+
 
       case "readme":
         return (
