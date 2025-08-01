@@ -281,7 +281,7 @@ export default function VSCodePortfolio() {
                   tech: ["Java", "Mock", "Mockito", "JUnit"],
                   description:
                     "📚 Trabajo integrador con principios avanzados de diseño y desarrollo de software orientado a objetos.💻✨",
-                  link: "https://github.com/JulietaJara/unqui-po2-jara",
+                  link: "https://github.com/ManchaliDamian/tp-final-ciencia-participativa-y-juegos.git",
                   type: "link",
                 },
               ].map((project, index) => (
@@ -317,7 +317,6 @@ export default function VSCodePortfolio() {
                               ))}
                             </div>
                           </div>
-                          {/* Video o Link */}
                           {project.type === "video" ? (
                             <div className="space-y-2">
                               <div>
